@@ -1,5 +1,6 @@
 import { IoIosArrowUp } from "react-icons/io";
 import { IoChatbubbleSharp } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 import useStore from "../utils/Store";
 
 const RoadmapList = ({
@@ -11,12 +12,13 @@ const RoadmapList = ({
   comments,
   id
 }: any) => {
+    const navigate=useNavigate()
     const {  toggleUpvote, upvotedProducts } = useStore();
     const handleUpvoteClick = (id: number) => {
       toggleUpvote(id); // Toggle the upvote state
     };
   return (
-    <div className="grid gap-[8px]">
+    <div className="grid gap-[8px] cursor-pointer" onClick={()=>navigate(`/feedback/${id}`)}>
       <div className="flex gap-x-[16px] items-center">
         <div
           className={`rounded-full w-[8px] h-[8px] 

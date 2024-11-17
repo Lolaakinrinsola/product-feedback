@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import useStore from '../utils/Store';
 import Whitebg from './Whitebg'
 
@@ -6,10 +7,17 @@ const CategoryOptions = () => {
     board,
     setSelectedBoard,
     selectedBoard,
+    freshRequest
   } = useStore();
   function handleClick(val: any) {
     setSelectedBoard(val);
   }
+
+  useEffect(() => {
+    if(selectedBoard==='All') return
+    setSelectedBoard(selectedBoard)
+  }, [freshRequest])
+  
   return (
     <Whitebg>
             <div className="flex flex-wrap gap-[8px]">

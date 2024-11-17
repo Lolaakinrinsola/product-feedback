@@ -37,29 +37,28 @@ const useStore = create((set, get) => ({
     const product = freshRequest[productIndex]; // The product to toggle upvote for
   
     let updatedProduct;
+    let updatedUpvotedProducts;
+    
     // Check if this product is already upvoted by the user
     if (upvotedProducts.includes(id)) {
       // If it's already upvoted, decrease upvotes by 1 and remove from the upvoted list
       updatedProduct = { ...product, upvotes: product.upvotes - 1 };
-      const updatedUpvotedProducts = upvotedProducts.filter((productId) => productId !== id);
-      set({
-        upvotedProducts: updatedUpvotedProducts, 
-        productRequest: freshRequest.map((p, idx) => idx === productIndex ? updatedProduct : p)
-      });
+      updatedUpvotedProducts = upvotedProducts.filter((productId) => productId !== id);
     } else {
       // If it's not upvoted yet, increase upvotes by 1 and add to the upvoted list
       updatedProduct = { ...product, upvotes: product.upvotes + 1 };
-      const updatedUpvotedProducts = [...upvotedProducts, id];
-      set({
-        upvotedProducts: updatedUpvotedProducts,
-        productRequest: freshRequest.map((p, idx) => idx === productIndex ? updatedProduct : p)
-      });
+      updatedUpvotedProducts = [...upvotedProducts, id];
     }
+    
+    // Update the state with the new product list and upvoted products list
+    set({
+      upvotedProducts: updatedUpvotedProducts,
+      freshRequest: freshRequest.map((p, idx) => idx === productIndex ? updatedProduct : p),
+      productRequest:productRequest.map((p, idx) => idx === productIndex ? updatedProduct : p)
+    });
   },
-  
-  
-  
 
+  
   // Sort function that applies the selected sort option
   sortProductRequests: (sortOption) => {
     const productRequests = get().productRequest;
@@ -98,8 +97,6 @@ const useStore = create((set, get) => ({
     set({ roadmap });
   },
 
-  //I want to be able to upvote a suggestion ,that is adding +1 to the upvotes then if clicked again it would -1
-  
   setRoadmap: () => {
     const roadmap = generateRoadmap(get().productRequest);
     set({ roadmap });
@@ -112,14 +109,14 @@ const useStore = create((set, get) => ({
       }
       return product;
     });
-    set({ productRequest: updatedRequests, freshRequest: updatedRequests });
+    set({ freshRequest: updatedRequests ,productRequest:updatedRequests});
     toast.success(` Suggestion edited successfully!`)
 
   },
   addProductRequest: (data) => {
     const freshRequests = get().freshRequest
     const newProductRequest=[...freshRequests,{...data,status:'suggestion',id:freshRequests.length+1,upvotes: 0,}]
-    set({ productRequest: newProductRequest, freshRequest: newProductRequest });
+    set({  freshRequest: newProductRequest,productRequest:newProductRequest });
     toast.success(` Suggestion added successfully!`)
   },
   deleteProductRequest: (id) => {

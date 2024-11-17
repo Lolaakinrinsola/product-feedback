@@ -10,19 +10,19 @@ const Suggestions = () => {
   const {
     productRequest,
     setRoadmap,
-    setSelectedBoard,
     selectedBoard,
     setSelectedSort,
     selectedSort,
+    freshRequest
   } = useStore();
   
   useEffect(() => {
     setRoadmap();
-  }, []);
+  }, [freshRequest]);
 
   useEffect(() => {
     setSelectedSort(selectedSort);
-  }, [selectedBoard]);
+  }, [selectedBoard,freshRequest]);
 
   
 

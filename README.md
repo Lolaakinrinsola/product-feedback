@@ -1,6 +1,6 @@
 # Frontend Mentor - Audiophile e-commerce website solution
 
-This is a solution to the [Audiophile e-commerce website challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/audiophile-ecommerce-website-C8cuSd_wx). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+This is a solution to the [Product feedback app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/product-feedback-app-wbvUYqjR6). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
 ## Table of contents
 
@@ -34,7 +34,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [ solution URL here](https://www.frontendmentor.io/solutions/audiophile-ecommerce-using-zustand-1Z27Qdd4ek)
-- Live Site URL: [Audiophile E-commerce Website](https://audiophile-omega-navy.vercel.app/)
+- Live Site URL: [Product Feedback Website](https://audiophile-omega-navy.vercel.app/)
 
 ## My process
 
